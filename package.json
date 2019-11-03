@@ -1,0 +1,16 @@
+{
+  "name": "youtubejs",
+  "version": "1.0.0",
+  "description": "Project based on Youtube video platform developed in AngularJS",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "json-server --watch db.json"
+  },
+  "author": "Arkaitz Marcos",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "json-server": "^0.15.1"
+  }
+}
