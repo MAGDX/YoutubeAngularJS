@@ -1,0 +1,17 @@
+<h1>{{vm.titulo}}</h1>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <ul>
+            <li ng-repeat="contrato in vm.contratos">
+                {{contrato.nombre}}
+            </li>
+        </ul>
+    </div>
+    <div class="col">
+        <pre>
+            {{vm.contratos | json}}
+        </pre>
+    </div>
+</div>

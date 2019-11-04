@@ -1,5 +1,5 @@
 {
-    "name": "repaso",
+    "name": "giipolleces",
     "version": "1.0.0",
     "description": "",
     "main": "index.html",
@@ -21,6 +21,6 @@
         "start": "json-server --watch db.json | http-server -o http://127.0.0.1:5000/index.html -p 5000"
     },
     "keywords": [],
-    "author": "",
+    "author": "Arkaitz Marcos",
     "license": "ISC"
 }
