@@ -17,6 +17,11 @@ app.config([
             url: "/programacion-funcional",
             templateUrl: "views/contratos.html",
             controller: ContratosController
+        })
+            .state("ejerciciosContratos", {
+            url: "/ejercicios-contratos",
+            templateUrl: "views/ejercicios-contratos.html",
+            controller: ContratosController
         });
     }
 ]);

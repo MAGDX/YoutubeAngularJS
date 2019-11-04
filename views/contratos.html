@@ -1,17 +1,72 @@
 <h1>{{vm.titulo}}</h1>
 <hr>
 
+<button class="btn btn-primary float-right" type="button">
+    <a ui-sref="ejerciciosContratos">Ejercicios</a>
+</button>
+
+<div class="mb-3">
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+        aria-expanded="false" aria-controls="collapseExample">
+        Filtros
+    </button>
+    <div class="collapse mt-1" id="collapseExample">
+        <div class="card card-body">
+            <input type="search" class="form-control" ng-model="filtro.nombre" placeholder="Filtro por nombre...">
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col">
-        <ul>
-            <li ng-repeat="contrato in vm.contratos">
-                {{contrato.nombre}}
-            </li>
-        </ul>
+        <h2>Todos los contratos</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" ng-click="campo='';orden = !orden">#</th>
+                    <th scope="col" ng-click="campo='nombre';orden = !orden">Nombre</th>
+                    <th scope="col" ng-click="campo='';orden = !orden">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contrato in vm.contratos | filter: filtro | orderBy: campo: orden">
+                    <th scope="row">{{contrato.idColumn}}</th>
+                    <td>
+                        <span ng-class="{'text-danger': {{!contrato.nombre.length}}}">
+                            {{(contrato.nombre)?contrato.nombre:'Sin nombre'}}
+                        </span>
+                    </td>
+                    <td>{{(contrato.ACCIONES.length)?contrato.ACCIONES.length:'0'}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="col">
+        <h2>Contratos Mapeados</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" ng-click="campo='';orden = !orden">#</th>
+                    <th scope="col" ng-click="campo='nombre';orden = !orden">Nombre</th>
+                    <th scope="col" ng-click="campo='nAcciones';orden = !orden">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contrato in vm.contratosMapeados | filter: filtro | orderBy: campo: orden">
+                    <th scope="row">{{contrato.id}}</th>
+                    <td>
+                        <span ng-class="{'text-danger': {{!contrato.nombre.length}}}">
+                            {{contrato.nombre}}
+                        </span>
+                    </td>
+                    <td>{{contrato.nAcciones}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--<div class="col-4">
         <pre>
             {{vm.contratos | json}}
         </pre>
-    </div>
+    </div>-->
 </div>

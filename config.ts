@@ -26,6 +26,12 @@ app.config([
                 url: "/programacion-funcional",
                 templateUrl: "views/contratos.html",
                 controller: ContratosController
+            })
+            // Ejercicios Contratos
+            .state("ejerciciosContratos", {
+                url: "/ejercicios-contratos",
+                templateUrl: "views/ejercicios-contratos.html",
+                controller: ContratosController
             });
             /*.state("app", {
                 url: "/app",
@@ -73,7 +79,6 @@ app.config([
                     ]
                 }
             })
-
             .state("app.piloto.detalle", {
                 url: "/detalle",
                 templateUrl: "views/pilotoDetalle.html",
