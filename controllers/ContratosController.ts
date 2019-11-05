@@ -17,7 +17,7 @@ class ContratosController implements ng.IController {
     public ejercicio3: any;
     public ejercicio4: any;
     public ejercicio5: any;
-    public ejercicio6: any;
+    public ejercicio6: Array < string > ;
 
     public static $inject = ["$scope", "contratosJson"];
 
@@ -42,28 +42,44 @@ class ContratosController implements ng.IController {
         this.$scope.vm.ejercicio1 = this.contratosJson.filter(elem => {
             return (!elem.ACCIONES || elem.ACCIONES.length == 0);
         });
-        console.debug('Contratos mapeados %o', $scope.vm.ejercicio1);
+        console.debug('Ejercicio 1 %o', $scope.vm.ejercicio1);
 
         // Filter Ejercicio 2
         this.$scope.vm.ejercicio2 = this.contratosJson.filter(elem => {
             return (elem.ACCIONES && elem.ACCIONES.length >= 1 && elem.ACCIONES.length <= 3);
         });
-        console.debug('Contratos mapeados %o', $scope.vm.ejercicio2);
+        console.debug('Ejercicio 2 %o', $scope.vm.ejercicio2);
 
         // Filter Ejercicio 3
         this.$scope.vm.ejercicio3 = this.contratosJson.filter(elem => {
             return (elem.ACCIONES && elem.ACCIONES.length > 3);
         });
-        console.debug('Contratos mapeados %o', $scope.vm.ejercicio3);
+        console.debug('Ejercicio 3 %o', $scope.vm.ejercicio3);
 
-        // Filter Ejercicio 4
-        this.$scope.vm.ejercicio4 = this.contratosJson.filter(elem => {
-            return (elem.ACCIONES && elem.ACCIONES.clave == 'SITUACION');
-        });
-        console.debug('Contratos mapeados %o', $scope.vm.ejercicio4);
+        // Filter/Find Ejercicio 4
+        this.$scope.vm.ejercicio4 = this.contratosJson.filter(elem => //filtramos que tengan ACCIONES
+            elem.ACCIONES && elem.ACCIONES.length > 0).find(elem => // dentro del array de ACCIONES, buscamos la clave
+            elem.ACCIONES.find(elem => elem.clave === "SITUACION")
+        );
+        console.debug('Ejercicio 4 %o', $scope.vm.ejercicio4);
 
         // Map Ejercicio 5
+        this.$scope.vm.ejercicio5 = this.contratosJson.reverse() // dar la vuelta al array
+            .filter(elem => elem.ACCIONES && elem.ACCIONES.length > 0) //filtramos que tengan ACCIONES
+            .find(elem => elem.ACCIONES.find(elem => elem.clave === "SITUACION") // dentro del array de ACCIONES, buscamos la clave
+        );
+        console.debug('Ejercicio 5 %o', $scope.vm.ejercicio5);
 
         // Map Ejercicio 6
+        let accionesDuplicadas: Array < any > = $scope.vm.contratos
+            .filter(c => c.ACCIONES && c.ACCIONES.length > 0) // coger solo arrays con datos
+            .map(c => c.ACCIONES) // quedarnos con las acciones
+            .reduce(function (a, b) { // reducir los subarrays a 1 array
+                return a.concat(b);
+            })
+            .map(x => x.titulo); // quedarnos con el titulo de la accion
+
+        this.$scope.vm.ejercicio6 = [...new Set(accionesDuplicadas)].sort(); // eliminar duplicados
+        console.debug('Ejercicio 6 %o', $scope.vm.ejercicio6);
     }
 }

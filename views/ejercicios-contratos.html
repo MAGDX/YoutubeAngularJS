@@ -13,10 +13,10 @@
         Numero de contratos de +3 acciones: <strong>{{vm.ejercicio3.length}}</strong>
     </li>
     <li class="">
-        Buscar primer contrato que contenga la accion SITUACION: <strong>{{vm.ejercicio4.length}}</strong>
+        Buscar primer contrato que contenga la accion SITUACION: <strong>{{vm.ejercicio4.idColumn}}</strong>
     </li>
     <li class="">
-        Buscar ultimo contrato que contenga la accion SITUACION: <strong>{{vm.ejercicio5.length}}</strong>
+        Buscar ultimo contrato que contenga la accion SITUACION: <strong>{{vm.ejercicio5.idColumn}}</strong>
     </li>
     <li class="">
         Todas las acciones: <strong>{{vm.ejercicio6.length}}</strong>
@@ -24,6 +24,7 @@
 </ol>
 
 <div class="accordion mb-5" id="accordionExample">
+    <!-- Ejercicio 1 -->
     <div class="card">
         <div class="card-header" id="headingOne">
             <h2 class="mb-0 text-center">
@@ -35,7 +36,6 @@
                 </button>
             </h2>
         </div>
-
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
                 <pre>
@@ -50,6 +50,7 @@
             </div>
         </div>
     </div>
+    <!-- Ejercicio 2 -->
     <div class="card">
         <div class="card-header" id="headingTwo">
             <h2 class="mb-0 text-center">
@@ -75,6 +76,7 @@
             </div>
         </div>
     </div>
+    <!-- Ejercicio 3 -->
     <div class="card">
         <div class="card-header" id="headingThree">
             <h2 class="mb-0 text-center">
@@ -100,6 +102,7 @@
             </div>
         </div>
     </div>
+    <!-- Ejercicio 4 -->
     <div class="card">
         <div class="card-header" id="headingFour">
             <h2 class="mb-0 text-center">
@@ -107,7 +110,7 @@
                     aria-expanded="false" aria-controls="collapseFour">
                     <strong>Ejercicio 4</strong>
                     <br>
-                    Numero de Contratos: <strong>{{vm.ejercicio4.length}}</strong>
+                    Numero de Contratos: <strong>{{vm.ejercicio4.idColumn}}</strong>
                 </button>
             </h2>
         </div>
@@ -115,10 +118,72 @@
             <div class="card-body">
                 <pre>
                     <code>
-                        
+                        this.$scope.vm.ejercicio4 = this.contratosJson.filter(elem =>
+                            elem.ACCIONES && elem.ACCIONES.length > 0).find(elem =>
+                            elem.ACCIONES.find(elem => elem.clave === "SITUACION")
+                        );
                     </code>
 
                     {{vm.ejercicio4 | json}}
+                </pre>
+            </div>
+        </div>
+    </div>
+    <!-- Ejercicio 5 -->
+    <div class="card">
+        <div class="card-header" id="headingFive">
+            <h2 class="mb-0 text-center">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive"
+                    aria-expanded="false" aria-controls="collapseFive">
+                    <strong>Ejercicio 5</strong>
+                    <br>
+                    Numero de Contratos: <strong>{{vm.ejercicio5.idColumn}}</strong>
+                </button>
+            </h2>
+        </div>
+        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+            <div class="card-body">
+                <pre>
+                    <code>
+                        this.$scope.vm.ejercicio5 = this.contratosJson.reverse()
+                            .filter(elem => elem.ACCIONES && elem.ACCIONES.length > 0)
+                            .find(elem => elem.ACCIONES.find(elem => elem.clave === "SITUACION")
+                        );
+                    </code>
+
+                    {{vm.ejercicio5 | json}}
+                </pre>
+            </div>
+        </div>
+    </div>
+    <!-- Ejercicio 6 -->
+    <div class="card">
+        <div class="card-header" id="headingSix">
+            <h2 class="mb-0 text-center">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix"
+                    aria-expanded="false" aria-controls="collapseSix">
+                    <strong>Ejercicio 6</strong>
+                    <br>
+                    Numero de Contratos: <strong>{{vm.ejercicio6.length}}</strong>
+                </button>
+            </h2>
+        </div>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+            <div class="card-body">
+                <pre>
+                    <code>
+                        let accionesDuplicadas: Array < any > = $scope.vm.contratos
+                            .filter(c => c.ACCIONES && c.ACCIONES.length > 0)
+                            .map(c => c.ACCIONES)
+                            .reduce(function (a, b) {
+                                return a.concat(b);
+                            })
+                            .map(x => x.titulo);
+                
+                        this.$scope.vm.ejercicio6 = new Set(accionesDuplicadas);
+                    </code>
+
+                    {{vm.ejercicio6 | json}}
                 </pre>
             </div>
         </div>
