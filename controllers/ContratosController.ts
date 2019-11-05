@@ -1,9 +1,3 @@
-interface IContratoMapeado {
-    id: string;
-    nombre: string;
-    nAcciones: number;
-}
-
 interface IContratosController extends ng.IScope {
     vm: ContratosController;
 }
@@ -12,9 +6,9 @@ class ContratosController implements ng.IController {
     public titulo: string;
     public contratos: any;
     public contratosMapeados: Array < IContratoMapeado > ;
-    public ejercicio1: any;
-    public ejercicio2: any;
-    public ejercicio3: any;
+    public ejercicio1: Array < any >;
+    public ejercicio2: Array < any >;
+    public ejercicio3: Array < any >;
     public ejercicio4: any;
     public ejercicio5: any;
     public ejercicio6: Array < string > ;
@@ -63,14 +57,14 @@ class ContratosController implements ng.IController {
         );
         console.debug('Ejercicio 4 %o', $scope.vm.ejercicio4);
 
-        // Map Ejercicio 5
+        // Reverse/Filter/Find Ejercicio 5
         this.$scope.vm.ejercicio5 = this.contratosJson.reverse() // dar la vuelta al array
             .filter(elem => elem.ACCIONES && elem.ACCIONES.length > 0) //filtramos que tengan ACCIONES
             .find(elem => elem.ACCIONES.find(elem => elem.clave === "SITUACION") // dentro del array de ACCIONES, buscamos la clave
         );
         console.debug('Ejercicio 5 %o', $scope.vm.ejercicio5);
 
-        // Map Ejercicio 6
+        // Filter/Map/Reduce/Spread Ejercicio 6
         let accionesDuplicadas: Array < any > = $scope.vm.contratos
             .filter(c => c.ACCIONES && c.ACCIONES.length > 0) // coger solo arrays con datos
             .map(c => c.ACCIONES) // quedarnos con las acciones

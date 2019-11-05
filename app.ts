@@ -2,8 +2,9 @@ const app = angular.module("app", ["ui.router"]);
 
 // Registro de Servicios y Controladores
 app
-  //.service("ergastService", ErgastService)
-  .controller("contratosController", ContratosController);
+  .service("librosService", LibrosService)
+  .controller("contratosController", ContratosController)
+  .controller("librosController", LibrosController);
 
 app.constant("contratosJson",[
     {

@@ -32,6 +32,12 @@ app.config([
                 url: "/ejercicios-contratos",
                 templateUrl: "views/ejercicios-contratos.html",
                 controller: ContratosController
+            })
+            // Libros
+            .state("libros", {
+                url: "/libros",
+                templateUrl: "views/libros.html",
+                controller: LibrosController
             });
             /*.state("app", {
                 url: "/app",

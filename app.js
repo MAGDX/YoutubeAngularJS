@@ -1,6 +1,8 @@
 var app = angular.module("app", ["ui.router"]);
 app
-    .controller("contratosController", ContratosController);
+    .service("librosService", LibrosService)
+    .controller("contratosController", ContratosController)
+    .controller("librosController", LibrosController);
 app.constant("contratosJson", [
     {
         "DESAGRUP": "",
