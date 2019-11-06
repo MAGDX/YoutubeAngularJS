@@ -2,40 +2,73 @@
   "libros": [
     {
       "id": 1,
-      "titulo": "Eragon",
-      "isbn": "123-LKJ",
-      "nPaginas": 544,
-      "autor": "Christopher Paolini",
-      "digital": false
-    },{
+      "titulo": "Eragonssssss",
+      "isbn": "123-LKJssssss",
+      "nPaginas": "54455",
+      "autor": "Christopher Paolinissss",
+      "digital": false,
+      "formatos": {
+        "dbt": true
+      }
+    },
+    {
       "id": 2,
       "titulo": "Harry Potter y la piedra filosofal",
       "isbn": "654-LDN",
       "nPaginas": 223,
-      "autor": "J. K. Rowling",
+      "autor": "J. K. dfweefewf",
       "digital": false
-    },{
+    },
+    {
       "id": 3,
       "titulo": "El Nombre del Viento",
       "isbn": "861-JFU",
-      "nPaginas": 613,
+      "nPaginas": "612",
       "autor": "Patrick Rothfuss",
       "digital": false
-    },{
+    },
+    {
       "id": 4,
-      "titulo": "El Codigo DaVinci",
+      "titulo": "eiwughfd",
       "isbn": "0385504209",
-      "nPaginas": 536,
-      "autor": "Dan Brown",
+      "nPaginas": "91",
+      "autor": "wefewf",
       "digital": false
-    },{
+    },
+    {
       "id": 5,
       "titulo": "Luces del Norte",
       "isbn": "783-ICO",
       "nPaginas": 399,
       "autor": "Philip Pullman",
       "digital": true,
-      "formatos": ["epub", "pdf"]
+      "formatos": {
+        "epub": true,
+        "pdf": true
+      }
+    },
+    {
+      "id": 6,
+      "titulo": "ipoui",
+      "isbn": "uii",
+      "nPaginas": "1111",
+      "autor": "vvvvv",
+      "digital": true,
+      "formatos": {
+        "epub": true,
+        "tpz": true
+      }
+    },
+    {
+      "id": 7,
+      "titulo": "asdadssa",
+      "isbn": "iuoiuouio",
+      "nPaginas": "65",
+      "autor": "dwhtyhnbtvvrt",
+      "digital": false,
+      "formatos": {
+        "dbt": false
+      }
     }
   ]
 }

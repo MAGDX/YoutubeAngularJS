@@ -7,13 +7,6 @@ interface ILibrosService{
     getLibros(): angular.IPromise<Array<ILibro>>;
 
     /**
-     * Obtiene los datos de un libro
-     * @param id identificador del libro cuyos datos deseamos obtener
-     * @return Devuelve el libro deseado
-     */
-    getLibroDetalle(id: number): angular.IPromise<ILibro>;
-
-    /**
      * Borra un libro
      * @param id identificador del libro a borrar
      * @return Devuelve true o false
@@ -25,7 +18,7 @@ interface ILibrosService{
      * @param libro Datos del libro a crear
      * @return Devuelve true o false
      */
-    crearLibro(libro: ILibro): angular.IPromise<boolean>;
+    crear(libro: ILibro): angular.IPromise<boolean>;
 
     /**
      * Modifica un libro existente
@@ -44,28 +37,30 @@ class LibrosService implements ILibrosService{
     constructor($http){
         console.log("LibrosService constructor");
         this.http = $http;
-        this.ENDPOINT = "http://localhost:3000/libros";
+        this.ENDPOINT = "http://localhost:3000/libros/";
     }
 
-    public getLibros(): any {
+    public getLibros(): angular.IPromise<any> {
         let url = this.ENDPOINT;
         console.log('GET ' + url);
         return this.http.get(url).then( res => res.data);
     }
 
-    public getLibroDetalle(id: number): angular.IPromise<ILibro> {
-        throw new Error("Method not implemented.");
+    public delete(id: number): angular.IPromise<any> {
+        let url = this.ENDPOINT + id;
+        console.log('DELETE ' + url);
+        return this.http.delete(url).then( res => res.data);
     }
 
-    public delete(id: number): angular.IPromise<boolean> {
-        throw new Error("Method not implemented.");
+    public crear(libro: ILibro): angular.IPromise<any> {
+        let url = this.ENDPOINT;
+        console.log('POST ' + url);
+        return this.http.post(url, libro).then( res => res.data);
     }
 
-    public crearLibro(libro: ILibro): angular.IPromise<boolean> {
-        throw new Error("Method not implemented.");
-    }
-
-    public modificar(id: number, libro: ILibro): angular.IPromise<boolean> {
-        throw new Error("Method not implemented.");
+    public modificar(id: number, libro: ILibro): angular.IPromise<any> {
+        let url = this.ENDPOINT + id;
+        console.log('PUT ' + url);
+        return this.http.put(url, libro).then( res => res.data);
     }
 }

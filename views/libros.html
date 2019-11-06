@@ -1,6 +1,12 @@
 <h1>Libros</h1>
 <hr>
-{{libro}}
+
+<div ng-if="vm.mensaje">
+    <div class="alert alert-info" role="alert">
+        {{vm.mensaje}}
+    </div>
+</div>
+
 <div class="row">
     <div class="col-8">
         <table class="table">
@@ -26,73 +32,78 @@
                         {{l.nPaginas}}
                     </td>
                     <td>
-                        <i class="fas fa-edit" ng-click="editarLibro(l)"></i>
-                        <i class="fas fa-trash-alt ml-1"></i>
+                        <i class="fas fa-edit text-primary" ng-click="vm.editarLibro(l); vm.mensaje = undefined"></i>
+                        <i class="fas fa-trash-alt ml-1 text-danger" ng-click="vm.borrarLibro(l.id); vm.mensaje = undefined"></i>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="col-4 bg-light">
-        <form name="formLibro" ng-submit="" novalidate>
+        <pre>
+           {{vm.libro | json}}
+        </pre>
+        <form name="libroForm" ng-submit="vm.guardarLibro()" novalidate>
             <div class="form-group">
                 <label for="id">ID</label>
-                <input type="text" name="id" ng-model="libro.id" class="form-control" id="id" readonly>
+                <input type="text" name="libroForm.id" ng-model="vm.libro.id" class="form-control" id="id" readonly>
             </div>
             <div class="form-group">
                 <label for="titulo">Titulo</label>
-                <input type="text" name="titulo" ng-model="libro.titulo" class="form-control" id="titulo" placeholder="Inserte titulo...">
+                <input type="text" name="libroForm.titulo" ng-model="vm.libro.titulo" class="form-control" id="titulo"
+                    placeholder="Inserte titulo...">
             </div>
             <div class="form-group">
                 <label for="isbn">ISBN</label>
-                <input type="text" name="isbn" ng-model="libro.isbn" class="form-control" id="isbn" placeholder="Inserte titulo...">
+                <input type="text" name="libroForm.isbn" ng-model="vm.libro.isbn" class="form-control" id="isbn"
+                    placeholder="Inserte titulo...">
             </div>
             <div class="form-group">
                 <label for="npaginas">Nº de Paginas</label>
-                <input type="text" name="nPaginas" ng-model="libro.nPaginas" class="form-control" id="npaginas" placeholder="Inserte el nº de paginas...">
+                <input type="text" name="libroForm.nPaginas" ng-model="vm.libro.nPaginas" class="form-control"
+                    id="npaginas" placeholder="Inserte el nº de paginas...">
             </div>
             <div class="form-group">
                 <label for="autor">Autor</label>
-                <input type="text" name="autor" ng-model="libro.autor" class="form-control" id="autor" placeholder="Inserte autor...">
+                <input type="text" name="libroForm.autor" ng-model="vm.libro.autor" class="form-control" id="autor"
+                    placeholder="Inserte autor...">
             </div>
             <div class="form-group">
                 <label class="form-check-label" for="defaultCheck1">Digital</label>
-                <input class="form-check-input ml-3" name="digital" ng-model="libro.digital" ng-init="libro.digital = false" type="checkbox" id="defaultCheck1" value="digital"
-                    ng-click="digital = !digital">
+                <input class="form-check-input ml-3" name="libroForm.digital" ng-model="vm.libro.digital"
+                    type="checkbox" id="defaultCheck1" value="digital" ng-click="digital = !digital">
             </div>
-            <div class="form-group" ng-if="digital">
+            <div class="form-group" ng-if="vm.libro.digital">
                 <label for="digital">Formatos</label>
                 <br>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="pdf">
+                    <input name="libroForm.formatos.pdf" ng-model="vm.libro.formatos.pdf" class="form-check-input"
+                        type="checkbox" id="inlineCheckbox1" value="pdf">
                     <label class="form-check-label" for="inlineCheckbox1">.pdf</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="epub">
+                    <input name="libroForm.formatos.epub" ng-model="vm.libro.formatos.epub" class="form-check-input"
+                        type="checkbox" id="inlineCheckbox2" value="epub">
                     <label class="form-check-label" for="inlineCheckbox2">.epub</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="dbt">
+                    <input name="libroForm.formatos.dbt" ng-model="vm.libro.formatos.dbt" class="form-check-input"
+                        type="checkbox" id="inlineCheckbox3" value="dbt">
                     <label class="form-check-label" for="inlineCheckbox3">.dbt</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="tpz">
+                    <input name="libroForm.formatos.tpz" ng-model="vm.libro.formatos.tpz" class="form-check-input"
+                        type="checkbox" id="inlineCheckbox4" value="tpz">
                     <label class="form-check-label" for="inlineCheckbox4">.tpz</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="mobi">
+                    <input name="libroForm.formatos.mobi" ng-model="vm.libro.formatos.mobi" class="form-check-input"
+                        type="checkbox" id="inlineCheckbox5" value="mobi">
                     <label class="form-check-label" for="inlineCheckbox5">.mobi</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">{{(libro.id != -1)?"Modificar":"Crear"}}</button>
+            <button type="submit" class="btn btn-primary">{{(vm.libro.id)?"Modificar":"Crear"}}</button>
+            <button type="reset" class="btn btn-danger" ng-click="vm.reset()">Cancelar</button>
         </form>
-
-        <pre>
-            {{formLibro | json}}
-        </pre>
-
-        <pre>
-            {{vm.libros | json}}
-        </pre>
     </div>
 </div>
