@@ -37,9 +37,6 @@ var LibrosController = (function () {
         this.guardarLibro = function () {
             var lib = _this.$scope.vm.libro;
             console.debug('submitado formulario %o', lib);
-            if (lib.digital && lib.formatos && lib.formatos.length) {
-                return false;
-            }
             if (lib.id) {
                 librosService.modificar(lib.id, lib).then(function (data) {
                     console.info("libro editado %o", data);

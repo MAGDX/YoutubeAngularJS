@@ -61,10 +61,11 @@ class LibrosController implements ng.IController {
             const lib = this.$scope.vm.libro;
             console.debug('submitado formulario %o', lib);
 
-            if( lib.digital && lib.formatos && lib.formatos.length){
+            // TODO controlar que si Digital = true, se seleccione algun formato
+            /*if( lib.digital && lib.formatos && lib.formatos.length){
                 
                 return false;
-            }
+            }*/
 
             if (lib.id) { // modificar
                 librosService.modificar(lib.id, lib).then(
