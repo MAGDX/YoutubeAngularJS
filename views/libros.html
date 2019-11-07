@@ -33,12 +33,14 @@
                     </td>
                     <td>
                         <i class="fas fa-edit text-primary" ng-click="vm.editarLibro(l); vm.mensaje = undefined"></i>
-                        <i class="fas fa-trash-alt ml-1 text-danger" ng-click="vm.borrarLibro(l.id); vm.mensaje = undefined"></i>
+                        <i class="fas fa-trash-alt ml-1 text-danger"
+                            ng-click="vm.libroEliminar = l; vm.mensaje = undefined" data-toggle="modal"
+                            data-target="#exampleModal"></i>
                     </td>
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> <!-- End Col -->
     <div class="col-4 bg-light">
         <pre>
            {{vm.libro | json}}
@@ -105,5 +107,29 @@
             <button type="submit" class="btn btn-primary">{{(vm.libro.id)?"Modificar":"Crear"}}</button>
             <button type="reset" class="btn btn-danger" ng-click="vm.reset()">Cancelar</button>
         </form>
+    </div> <!-- End Col -->
+</div> <!-- End Row -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    {{vm.libroEliminar.titulo}}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea eliminar este libro?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" ng-click="vm.borrarLibro();" data-dismiss="modal">Eliminar</button>
+            </div>
+        </div>
     </div>
 </div>

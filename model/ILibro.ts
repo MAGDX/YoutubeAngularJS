@@ -5,5 +5,5 @@ interface ILibro {
     numeroPaginas: number;
     autor: string;
     digital: boolean;
-    formatos?: Array<string>;
+    formatos?: any;
  }

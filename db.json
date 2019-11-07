@@ -58,17 +58,6 @@
         "epub": true,
         "tpz": true
       }
-    },
-    {
-      "id": 7,
-      "titulo": "asdadssa",
-      "isbn": "iuoiuouio",
-      "nPaginas": "65",
-      "autor": "dwhtyhnbtvvrt",
-      "digital": false,
-      "formatos": {
-        "dbt": false
-      }
     }
   ]
 }

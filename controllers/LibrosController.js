@@ -22,6 +22,9 @@ var LibrosController = (function () {
         this.guardarLibro = function () {
             var lib = _this.$scope.vm.libro;
             console.debug('submitado formulario %o', lib);
+            if (lib.digital && lib.formatos && lib.formatos.length) {
+                return false;
+            }
             if (lib.id) {
                 librosService.modificar(lib.id, lib).then(function (data) {
                     console.info("libro editado %o", data);
@@ -29,7 +32,7 @@ var LibrosController = (function () {
                     _this.$scope.vm.listar();
                 }, function (res) {
                     console.warn("No se puedo editar %o", res);
-                    _this.$scope.vm.mensaje = "ERROR modificando";
+                    _this.$scope.vm.mensaje = "Error modificando";
                 });
             }
             else {
@@ -40,16 +43,18 @@ var LibrosController = (function () {
                     _this.$scope.vm.mensaje = "Libro Nuevo Creado";
                 }, function (res) {
                     console.warn("No se puedo crear libro %o", res);
-                    _this.$scope.vm.mensaje = "ERROR creando Libro";
+                    _this.$scope.vm.mensaje = "Error creando libro";
                 });
             }
         };
-        this.borrarLibro = function (idLibro) {
-            console.debug('click boton borrar %o', idLibro);
-            this.librosService.borrarLibro(idLibro).then(function (res) {
-                return true;
+        this.borrarLibro = function () {
+            var _this = this;
+            console.debug('click boton borrar %o', this.$scope.vm.libroEliminar.id);
+            this.librosService.delete(this.$scope.vm.libroEliminar.id).then(function (res) {
+                _this.$scope.vm.mensaje = "Libro eliminado";
+                _this.$scope.vm.libros.splice(_this.$scope.vm.libros.indexOf(_this.$scope.vm.libroEliminar), 1);
             }, function (res) {
-                return false;
+                _this.$scope.vm.mensaje = "Error eliminando libro";
             });
         };
         this.reset = function () {

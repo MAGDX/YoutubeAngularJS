@@ -6,7 +6,8 @@ class LibrosController implements ng.IController {
 
     // Atributos
     public libros: Array < ILibro > ;
-    public libro: any;
+    public libro: ILibro;
+    public libroEliminar: ILibro;
     public mensaje: string;
 
     // Funciones
@@ -45,18 +46,22 @@ class LibrosController implements ng.IController {
             const lib = this.$scope.vm.libro;
             console.debug('submitado formulario %o', lib);
 
+            if( lib.digital && lib.formatos && lib.formatos.length){
+                
+                return false;
+            }
+
             if (lib.id) { // modificar
                 librosService.modificar(lib.id, lib).then(
                     data => {
                         console.info("libro editado %o", data);
                         this.$scope.vm.mensaje = "Libro Modificado";
-                        //TODO actulizar listado libros
                         //this.$scope.vm.libros.splice(this.$scope.vm.libros.indexOf(this.$scope.vm.libros.find(lib.id)),1,data);
                         this.$scope.vm.listar();
                     },
                     res => {
                         console.warn("No se puedo editar %o", res);
-                        this.$scope.vm.mensaje = "ERROR modificando";
+                        this.$scope.vm.mensaje = "Error modificando";
                     }
                 );
             } else { // insertar nuevo
@@ -69,18 +74,19 @@ class LibrosController implements ng.IController {
                     },
                     res => {
                         console.warn("No se puedo crear libro %o", res);
-                        this.$scope.vm.mensaje = "ERROR creando Libro";
+                        this.$scope.vm.mensaje = "Error creando libro";
                     }
                 );
             }
         };
 
-        this.borrarLibro = function (idLibro: number) {
-            console.debug('click boton borrar %o', idLibro);
-            this.librosService.borrarLibro(idLibro).then(res => {
-                return true;
+        this.borrarLibro = function () {
+            console.debug('click boton borrar %o', this.$scope.vm.libroEliminar.id);
+            this.librosService.delete(this.$scope.vm.libroEliminar.id).then(res => {
+                this.$scope.vm.mensaje = "Libro eliminado";
+                this.$scope.vm.libros.splice(this.$scope.vm.libros.indexOf(this.$scope.vm.libroEliminar),1);
             }, res => {
-                return false;
+                this.$scope.vm.mensaje = "Error eliminando libro";
             })
         }
 
