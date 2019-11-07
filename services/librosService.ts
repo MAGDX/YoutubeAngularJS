@@ -4,7 +4,7 @@ interface ILibrosService{
      * Peticion GET para obtener todos los libros
      * @return angular.IPromise<Array<ILibro>>
      */
-    getLibros(): angular.IPromise<Array<ILibro>>;
+    getLibros(): angular.IPromise<Array<Libro>>;
 
     /**
      * Borra un libro
@@ -18,7 +18,7 @@ interface ILibrosService{
      * @param libro Datos del libro a crear
      * @return Devuelve true o false
      */
-    crear(libro: ILibro): angular.IPromise<boolean>;
+    crear(libro: Libro): angular.IPromise<boolean>;
 
     /**
      * Modifica un libro existente
@@ -26,7 +26,7 @@ interface ILibrosService{
      * @param libro nuevos datos a modificar
      * @return Devuelve true o false
      */
-    modificar(id: number, libro : ILibro): angular.IPromise<boolean>;
+    modificar(id: number, libro : Libro): angular.IPromise<boolean>;
 }
 
 class LibrosService implements ILibrosService{
@@ -52,13 +52,13 @@ class LibrosService implements ILibrosService{
         return this.http.delete(url).then( res => res.data);
     }
 
-    public crear(libro: ILibro): angular.IPromise<any> {
+    public crear(libro: Libro): angular.IPromise<any> {
         let url = this.ENDPOINT;
         console.log('POST ' + url);
         return this.http.post(url, libro).then( res => res.data);
     }
 
-    public modificar(id: number, libro: ILibro): angular.IPromise<any> {
+    public modificar(id: number, libro: Libro): angular.IPromise<any> {
         let url = this.ENDPOINT + id;
         console.log('PUT ' + url);
         return this.http.put(url, libro).then( res => res.data);

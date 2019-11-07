@@ -5,10 +5,25 @@ var LibrosController = (function () {
         this.librosService = librosService;
         console.log("Constructor LibrosController");
         this.$scope.vm = this;
+        this.$scope.vm.libro = new Libro();
         this.$scope.vm.libros = [];
         this.listar = function () {
             _this.librosService.getLibros().then(function (libros) {
-                _this.$scope.vm.libros = libros;
+                _this.$scope.vm.libros = libros.map(function (e) {
+                    var l = new Libro();
+                    l.id = e.id;
+                    l.titulo = e._titulo;
+                    l.isbn = e._isbn;
+                    l.nPaginas = e._nPaginas;
+                    l.autor = e._autor;
+                    l.digital = e._digital;
+                    l.formatos.pdf = e._formatos._pdf;
+                    l.formatos.epub = e._formatos._epub;
+                    l.formatos.dbt = e._formatos._dbt;
+                    l.formatos.tpz = e._formatos._tpz;
+                    l.formatos.mobi = e._formatos._mobi;
+                    return l;
+                });
                 console.debug($scope.vm.libros);
             }, function (errorResponse) {
                 console.warn('respuesta servicio en controlador %o', errorResponse);
@@ -38,7 +53,7 @@ var LibrosController = (function () {
             else {
                 librosService.crear(lib).then(function (data) {
                     console.info("libro nuevo %o", data);
-                    _this.$scope.vm.libros.push(data);
+                    _this.$scope.vm.listar();
                     _this.$scope.vm.libro = undefined;
                     _this.$scope.vm.mensaje = "Libro Nuevo Creado";
                 }, function (res) {
@@ -58,11 +73,8 @@ var LibrosController = (function () {
             });
         };
         this.reset = function () {
-            return this.$scope.vm.libro = {
-                "digital": false
-            };
+            return this.$scope.vm.libro = new Libro();
         };
-        this.reset();
     }
     LibrosController.$inject = ["$scope", "librosService"];
     return LibrosController;

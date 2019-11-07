@@ -1,9 +1,9 @@
 class Libro {
 
     // Atributos
+    public id: number;
     private _titulo: string;
     private _isbn: string;
-    private _id: number;
     private _nPaginas: number;
     private _autor: string;
     private _digital: boolean;
@@ -13,122 +13,125 @@ class Libro {
     constructor() {
         this._titulo = "";
         this._isbn = "";
-        this._id = 0;
         this._nPaginas = 0;
         this._autor = "";
         this._digital = false;
         this._formatos = new Formatos();
     }
 
+    public rellenar(json: any): Libro {
+        let l = new Libro();
+        if(json.id){
+            l.id = json.id;
+        }
+
+        l.titulo = json._titulo;
+        l.isbn = json._isbn;
+        l.nPaginas = json._nPaginas;
+        l.autor = json._autor;
+        l.digital = json._digital;
+        l.formatos.pdf = json._formatos.pdf;
+        l.formatos.epub = json._formatos.epub;
+        l.formatos.dbt = json._formatos.dbt;
+        l.formatos.tpz = json._formatos.tpz;
+        l.formatos.mobi = json._formatos.mobi;
+        
+        return l;
+    }
+
     /**
      * Getter titulo
      * @return {string}
      */
-	public get titulo(): string {
-		return this._titulo;
-	}
+    public get titulo(): string {
+        return this._titulo;
+    }
 
     /**
      * Getter isbn
      * @return {string}
      */
-	public get isbn(): string {
-		return this._isbn;
-	}
-
-    /**
-     * Getter id
-     * @return {number}
-     */
-	public get id(): number {
-		return this._id;
-	}
+    public get isbn(): string {
+        return this._isbn;
+    }
 
     /**
      * Getter nPaginas
      * @return {number}
      */
-	public get nPaginas(): number {
-		return this._nPaginas;
-	}
+    public get nPaginas(): number {
+        return this._nPaginas;
+    }
 
     /**
      * Getter autor
      * @return {string}
      */
-	public get autor(): string {
-		return this._autor;
-	}
+    public get autor(): string {
+        return this._autor;
+    }
 
     /**
      * Getter digital
      * @return {boolean}
      */
-	public get digital(): boolean {
-		return this._digital;
-	}
+    public get digital(): boolean {
+        return this._digital;
+    }
 
     /**
      * Setter titulo
      * @param {string} value
      */
-	public set titulo(value: string) {
-		this._titulo = value;
-	}
+    public set titulo(value: string) {
+        this._titulo = value;
+    }
 
     /**
      * Setter isbn
      * @param {string} value
      */
-	public set isbn(value: string) {
-		this._isbn = value;
-	}
-
-    /**
-     * Setter id
-     * @param {number} value
-     */
-	public set id(value: number) {
-		this._id = value;
-	}
+    public set isbn(value: string) {
+        this._isbn = value;
+    }
 
     /**
      * Setter nPaginas
      * @param {number} value
      */
-	public set nPaginas(value: number) {
-		this._nPaginas = value;
-	}
+    public set nPaginas(value: number) {
+        this._nPaginas = value;
+    }
 
     /**
      * Setter autor
      * @param {string} value
      */
-	public set autor(value: string) {
-		this._autor = value;
-	}
+    public set autor(value: string) {
+        this._autor = value;
+    }
 
     /**
      * Setter digital
      * @param {boolean} value
      */
-	public set digital(value: boolean) {
-		this._digital = value;
+    public set digital(value: boolean) {
+        this._digital = value;
     }
-    
+
     /**
      * Getter formatos
      * @return {any}
      */
-	public get formatos(): any {
-		return this._formatos;
-	}
+    public get formatos(): Formatos {
+        return this._formatos;
+    }
 
     /**
      * Setter formatos
      * @param {any} value
      */
-	public set formatos(value: any) {
-		this._formatos = value;
-	}
+    public set formatos(value: Formatos) {
+        this._formatos = value;
+    }
 }

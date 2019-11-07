@@ -2,12 +2,28 @@ var Libro = (function () {
     function Libro() {
         this._titulo = "";
         this._isbn = "";
-        this._id = 0;
         this._nPaginas = 0;
         this._autor = "";
         this._digital = false;
         this._formatos = new Formatos();
     }
+    Libro.prototype.rellenar = function (json) {
+        var l = new Libro();
+        if (json.id) {
+            l.id = json.id;
+        }
+        l.titulo = json._titulo;
+        l.isbn = json._isbn;
+        l.nPaginas = json._nPaginas;
+        l.autor = json._autor;
+        l.digital = json._digital;
+        l.formatos.pdf = json._formatos.pdf;
+        l.formatos.epub = json._formatos.epub;
+        l.formatos.dbt = json._formatos.dbt;
+        l.formatos.tpz = json._formatos.tpz;
+        l.formatos.mobi = json._formatos.mobi;
+        return l;
+    };
     Object.defineProperty(Libro.prototype, "titulo", {
         get: function () {
             return this._titulo;
@@ -24,16 +40,6 @@ var Libro = (function () {
         },
         set: function (value) {
             this._isbn = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Libro.prototype, "id", {
-        get: function () {
-            return this._id;
-        },
-        set: function (value) {
-            this._id = value;
         },
         enumerable: true,
         configurable: true

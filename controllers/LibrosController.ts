@@ -5,9 +5,9 @@ interface ILibrosController extends ng.IScope {
 class LibrosController implements ng.IController {
 
     // Atributos
-    public libros: Array < ILibro > ;
-    public libro: ILibro;
-    public libroEliminar: ILibro;
+    public libros: Array < Libro > ;
+    public libro: Libro;
+    public libroEliminar: Libro;
     public mensaje: string;
 
     // Funciones
@@ -23,11 +23,26 @@ class LibrosController implements ng.IController {
     constructor(private $scope: ILibrosController, private librosService: LibrosService) {
         console.log("Constructor LibrosController");
         this.$scope.vm = this;
+        this.$scope.vm.libro = new Libro();
         this.$scope.vm.libros = [];
 
         this.listar = () =>{
             this.librosService.getLibros().then(libros => {
-                this.$scope.vm.libros = libros;
+                this.$scope.vm.libros = libros.map(e =>{
+                    let l = new Libro();
+                    l.id = e.id;
+                    l.titulo = e._titulo;
+                    l.isbn = e._isbn;
+                    l.nPaginas = e._nPaginas;
+                    l.autor = e._autor;
+                    l.digital = e._digital;
+                    l.formatos.pdf = e._formatos._pdf;
+                    l.formatos.epub = e._formatos._epub;
+                    l.formatos.dbt = e._formatos._dbt;
+                    l.formatos.tpz = e._formatos._tpz;
+                    l.formatos.mobi = e._formatos._mobi;
+                    return l;
+                });
                 console.debug($scope.vm.libros);
             }, errorResponse => {
                 console.warn('respuesta servicio en controlador %o', errorResponse);
@@ -38,7 +53,7 @@ class LibrosController implements ng.IController {
         this.listar();
 
         // Funciones
-        this.editarLibro = (l: ILibro) => {
+        this.editarLibro = (l: Libro) => {
             this.$scope.vm.libro = angular.copy(l);
         }
 
@@ -68,7 +83,10 @@ class LibrosController implements ng.IController {
                 librosService.crear(lib).then(
                     data => {
                         console.info("libro nuevo %o", data);
-                        this.$scope.vm.libros.push(data);
+                        // let l = new Libro();
+                        // l.rellenar(data);
+                        // this.$scope.vm.libros.push(l);
+                        this.$scope.vm.listar();
                         this.$scope.vm.libro = undefined;
                         this.$scope.vm.mensaje = "Libro Nuevo Creado";
                     },
@@ -91,11 +109,7 @@ class LibrosController implements ng.IController {
         }
 
         this.reset = function () {
-            return this.$scope.vm.libro = {
-                "digital": false
-            };
+            return this.$scope.vm.libro = new Libro();
         }
-
-        this.reset();
     }
 }
