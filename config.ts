@@ -7,7 +7,7 @@ app.config([
         console.log("Entrando en la configuracion de rutas");
 
         // Configuracion de Rutas
-        $urlRouterProvider.when("", "/home");
+        $urlRouterProvider.when("", "/home"); // Si la ruta no existe, dirigimos al Home
 
         // Configuracion de Estados
         $stateProvider
@@ -16,10 +16,10 @@ app.config([
                 url: "/home",
                 templateUrl: "views/home.html"
             })
-            // Read Me
-            .state("readme", {
-                url: "/readme",
-                templateUrl: "views/readme.html"
+            // About
+            .state("about", {
+                url: "/about",
+                templateUrl: "views/about.html"
             })
             // Contratos
             .state("contratos", {
@@ -39,67 +39,5 @@ app.config([
                 templateUrl: "views/libros.html",
                 controller: LibrosController
             });
-            /*.state("app", {
-                url: "/app",
-                abstract: true,
-                template: "<div ui-view></div>",
-                resolve: {
-                    clasificacionMundial: [
-                        "ergastService",
-                        (ergastService: IErgastService) => ergastService.getDrivers()
-                    ]
-                }
-            })
-            .state("app.circuito", {
-                url: "/circuitos",
-                templateUrl: "views/circuitos.html",
-                controller: CircuitosController,
-                resolve: {
-                    circuitosMundial: [
-                        "ergastService",
-                        (ergastService: IErgastService) => ergastService.getCircuitos()
-                    ]
-                }
-            })
-            .state("app.lista", {
-                url: "/pilotos",
-                templateUrl: "views/pilotos.html",
-                controller: PilotosController
-            })
-            .state("app.piloto", {
-                url: "/piloto/:id",
-                templateUrl: "views/piloto.html",
-                controller: "pilotoController",
-                resolve: {
-                    pilotoId: ["$stateParams", ($stateParams: angular.ui.IStateParamsService) => $stateParams.id],
-                    piloto: [
-                        "clasificacionMundial",
-                        "pilotoId",
-                        (clasificacionMundial: any, pilotoId: string) =>
-                        clasificacionMundial.find(clasificacion => clasificacion.Driver.driverId == pilotoId)
-                    ],
-                    carreras: [
-                        "ergastService",
-                        "pilotoId",
-                        (ergastService: IErgastService, pilotoId: string) => ergastService.getDriverRaces(pilotoId)
-                    ]
-                }
-            })
-            .state("app.piloto.detalle", {
-                url: "/detalle",
-                templateUrl: "views/pilotoDetalle.html",
-                controller: "pilotoDetalleController",
-                params: {
-                    id: null
-                }
-            })
-            .state("app.piloto.carreras", {
-                url: "/carreras",
-                templateUrl: "views/pilotoCarreras.html",
-                controller: "pilotoCarrerasController",
-                params: {
-                    id: null
-                }
-            });*/
     }
 ]);

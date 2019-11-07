@@ -8,6 +8,7 @@
 </div>
 
 <div class="row">
+    <!-- Listado Libros -->
     <div class="col-8">
         <table class="table">
             <thead class="thead-dark">
@@ -40,9 +41,10 @@
                 </tr>
             </tbody>
         </table>
-    </div> <!-- End Col -->
-    <div class="col-4 bg-light mb-3">
-        <h3>Formulario</h3>
+    </div> <!-- End Listado Libros -->
+    <!-- Formulario -->
+    <div class="col-4 bg-light mb-3 border shadow-sm rounded">
+        <h3>{{(vm.libro.titulo != "")?vm.libro.titulo:"Nuevo Libro"}}</h3>
         <form name="libroForm" ng-submit="vm.guardarLibro()" novalidate>
             <div class="form-group">
                 <label for="id">ID</label>
@@ -102,10 +104,10 @@
                     <label class="form-check-label" for="inlineCheckbox5">.mobi</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">{{(vm.libro.id)?"Modificar":"Crear"}}</button>
-            <button type="reset" class="btn btn-danger" ng-click="vm.reset()">Cancelar</button>
+            <button type="submit" class="btn btn-primary mb-3">{{(vm.libro.id)?"Modificar":"Crear"}}</button>
+            <button type="reset" class="btn btn-danger mb-3" ng-click="vm.reset()">Cancelar</button>
         </form>
-    </div> <!-- End Col -->
+    </div> <!-- End Formulario -->
 </div> <!-- End Row -->
 
 <!-- Modal -->
@@ -130,4 +132,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> <!-- End Modal -->

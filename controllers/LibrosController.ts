@@ -71,9 +71,9 @@ class LibrosController implements ng.IController {
                 librosService.modificar(lib.id, lib).then(
                     data => {
                         console.info("libro editado %o", data);
-                        this.$scope.vm.mensaje = "Libro Modificado";
                         //this.$scope.vm.libros.splice(this.$scope.vm.libros.indexOf(this.$scope.vm.libros.find(lib.id)),1,data);
                         this.$scope.vm.listar();
+                        this.$scope.vm.mensaje = "Libro Modificado";
                     },
                     res => {
                         console.warn("No se puedo editar %o", res);
@@ -88,7 +88,7 @@ class LibrosController implements ng.IController {
                         // l.rellenar(data);
                         // this.$scope.vm.libros.push(l);
                         this.$scope.vm.listar();
-                        this.$scope.vm.libro = undefined;
+                        this.$scope.vm.libro = new Libro();
                         this.$scope.vm.mensaje = "Libro Nuevo Creado";
                     },
                     res => {
@@ -104,6 +104,7 @@ class LibrosController implements ng.IController {
             this.librosService.delete(this.$scope.vm.libroEliminar.id).then(res => {
                 this.$scope.vm.mensaje = "Libro eliminado";
                 this.$scope.vm.libros.splice(this.$scope.vm.libros.indexOf(this.$scope.vm.libroEliminar),1);
+                this.$scope.vm.libro = new Libro();
             }, res => {
                 this.$scope.vm.mensaje = "Error eliminando libro";
             })

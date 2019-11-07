@@ -40,8 +40,8 @@ var LibrosController = (function () {
             if (lib.id) {
                 librosService.modificar(lib.id, lib).then(function (data) {
                     console.info("libro editado %o", data);
-                    _this.$scope.vm.mensaje = "Libro Modificado";
                     _this.$scope.vm.listar();
+                    _this.$scope.vm.mensaje = "Libro Modificado";
                 }, function (res) {
                     console.warn("No se puedo editar %o", res);
                     _this.$scope.vm.mensaje = "Error modificando";
@@ -51,7 +51,7 @@ var LibrosController = (function () {
                 librosService.crear(lib).then(function (data) {
                     console.info("libro nuevo %o", data);
                     _this.$scope.vm.listar();
-                    _this.$scope.vm.libro = undefined;
+                    _this.$scope.vm.libro = new Libro();
                     _this.$scope.vm.mensaje = "Libro Nuevo Creado";
                 }, function (res) {
                     console.warn("No se puedo crear libro %o", res);
@@ -65,6 +65,7 @@ var LibrosController = (function () {
             this.librosService.delete(this.$scope.vm.libroEliminar.id).then(function (res) {
                 _this.$scope.vm.mensaje = "Libro eliminado";
                 _this.$scope.vm.libros.splice(_this.$scope.vm.libros.indexOf(_this.$scope.vm.libroEliminar), 1);
+                _this.$scope.vm.libro = new Libro();
             }, function (res) {
                 _this.$scope.vm.mensaje = "Error eliminando libro";
             });

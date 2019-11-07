@@ -9,9 +9,9 @@ app.config([
             url: "/home",
             templateUrl: "views/home.html"
         })
-            .state("readme", {
-            url: "/readme",
-            templateUrl: "views/readme.html"
+            .state("about", {
+            url: "/about",
+            templateUrl: "views/about.html"
         })
             .state("contratos", {
             url: "/programacion-funcional",
