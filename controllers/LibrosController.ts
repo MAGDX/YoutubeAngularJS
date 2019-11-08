@@ -26,21 +26,21 @@ class LibrosController implements ng.IController {
         this.$scope.vm.libro = new Libro();
         this.$scope.vm.libros = [];
 
-        this.listar = () =>{
+        this.listar = () => {
             this.librosService.getLibros().then(libros => {
-                this.$scope.vm.libros = libros.map(e =>{
+                this.$scope.vm.libros = libros.map(e => {
                     let l = new Libro();
                     l.id = e.id;
-                    l.titulo = e._titulo;
-                    l.isbn = e._isbn;
-                    l.nPaginas = e._nPaginas;
-                    l.autor = e._autor;
-                    l.digital = e._digital;
-                    l.formatos.pdf = e._formatos._pdf;
-                    l.formatos.epub = e._formatos._epub;
-                    l.formatos.dbt = e._formatos._dbt;
-                    l.formatos.tpz = e._formatos._tpz;
-                    l.formatos.mobi = e._formatos._mobi;
+                    l.titulo = e.titulo;
+                    l.isbn = e.isbn;
+                    l.nPaginas = e.nPaginas;
+                    l.autor = e.autor;
+                    l.digital = e.digital;
+                    l.formatos.pdf = e.formatos.pdf;
+                    l.formatos.epub = e.formatos.epub;
+                    l.formatos.dbt = e.formatos.dbt;
+                    l.formatos.tpz = e.formatos.tpz;
+                    l.formatos.mobi = e.formatos.mobi;
                     return l;
                 });
                 console.debug($scope.vm.libros);
@@ -58,7 +58,7 @@ class LibrosController implements ng.IController {
         }
 
         this.guardarLibro = () => {
-            const lib = this.$scope.vm.libro;
+            let lib = this.$scope.vm.libro;
             console.debug('submitado formulario %o', lib);
 
             // TODO controlar que si Digital = true, se seleccione algun formato
@@ -103,7 +103,7 @@ class LibrosController implements ng.IController {
             console.debug('click boton borrar %o', this.$scope.vm.libroEliminar.id);
             this.librosService.delete(this.$scope.vm.libroEliminar.id).then(res => {
                 this.$scope.vm.mensaje = "Libro eliminado";
-                this.$scope.vm.libros.splice(this.$scope.vm.libros.indexOf(this.$scope.vm.libroEliminar),1);
+                this.$scope.vm.libros.splice(this.$scope.vm.libros.indexOf(this.$scope.vm.libroEliminar), 1);
                 this.$scope.vm.libro = new Libro();
             }, res => {
                 this.$scope.vm.mensaje = "Error eliminando libro";

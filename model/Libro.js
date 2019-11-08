@@ -8,21 +8,38 @@ var Libro = (function () {
         this._formatos = new Formatos();
     }
     Libro.prototype.rellenar = function (json) {
-        var l = new Libro();
+        var libro = new Libro();
         if (json.id) {
-            l.id = json.id;
+            libro.id = json.id;
         }
-        l.titulo = json._titulo;
-        l.isbn = json._isbn;
-        l.nPaginas = json._nPaginas;
-        l.autor = json._autor;
-        l.digital = json._digital;
-        l.formatos.pdf = json._formatos.pdf;
-        l.formatos.epub = json._formatos.epub;
-        l.formatos.dbt = json._formatos.dbt;
-        l.formatos.tpz = json._formatos.tpz;
-        l.formatos.mobi = json._formatos.mobi;
-        return l;
+        libro.titulo = json.titulo;
+        libro.isbn = json.isbn;
+        libro.nPaginas = json.nPaginas;
+        libro.autor = json.autor;
+        libro.digital = json.digital;
+        libro.formatos.pdf = json.formatos.pdf;
+        libro.formatos.epub = json.formatos.epub;
+        libro.formatos.dbt = json.formatos.dbt;
+        libro.formatos.tpz = json.formatos.tpz;
+        libro.formatos.mobi = json.formatos.mobi;
+        return libro;
+    };
+    Libro.prototype.convertirJson = function () {
+        var libroJson = {
+            "titulo": this.titulo,
+            "isbn": this.isbn,
+            "nPaginas": this.nPaginas,
+            "autor": this.autor,
+            "digital": this.digital,
+            "formatos": {
+                "pdf": this.formatos.pdf,
+                "epub": this.formatos.epub,
+                "dbt": this.formatos.dbt,
+                "tpz": this.formatos.tpz,
+                "mobi": this.formatos.mobi
+            }
+        };
+        return libroJson;
     };
     Object.defineProperty(Libro.prototype, "titulo", {
         get: function () {

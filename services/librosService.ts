@@ -54,13 +54,17 @@ class LibrosService implements ILibrosService{
 
     public crear(libro: Libro): angular.IPromise<any> {
         let url = this.ENDPOINT;
+        let l = libro.convertirJson();
         console.log('POST ' + url);
-        return this.http.post(url, libro).then( res => res.data);
+
+        return this.http.post(url, l).then( res => res.data);
     }
 
     public modificar(id: number, libro: Libro): angular.IPromise<any> {
         let url = this.ENDPOINT + id;
+        let l = libro.convertirJson();
         console.log('PUT ' + url);
-        return this.http.put(url, libro).then( res => res.data);
+
+        return this.http.put(url, l).then( res => res.data);
     }
 }

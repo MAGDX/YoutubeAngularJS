@@ -12,16 +12,16 @@ var LibrosController = (function () {
                 _this.$scope.vm.libros = libros.map(function (e) {
                     var l = new Libro();
                     l.id = e.id;
-                    l.titulo = e._titulo;
-                    l.isbn = e._isbn;
-                    l.nPaginas = e._nPaginas;
-                    l.autor = e._autor;
-                    l.digital = e._digital;
-                    l.formatos.pdf = e._formatos._pdf;
-                    l.formatos.epub = e._formatos._epub;
-                    l.formatos.dbt = e._formatos._dbt;
-                    l.formatos.tpz = e._formatos._tpz;
-                    l.formatos.mobi = e._formatos._mobi;
+                    l.titulo = e.titulo;
+                    l.isbn = e.isbn;
+                    l.nPaginas = e.nPaginas;
+                    l.autor = e.autor;
+                    l.digital = e.digital;
+                    l.formatos.pdf = e.formatos.pdf;
+                    l.formatos.epub = e.formatos.epub;
+                    l.formatos.dbt = e.formatos.dbt;
+                    l.formatos.tpz = e.formatos.tpz;
+                    l.formatos.mobi = e.formatos.mobi;
                     return l;
                 });
                 console.debug($scope.vm.libros);

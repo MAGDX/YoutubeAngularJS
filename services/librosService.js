@@ -16,13 +16,15 @@ var LibrosService = (function () {
     };
     LibrosService.prototype.crear = function (libro) {
         var url = this.ENDPOINT;
+        var l = libro.convertirJson();
         console.log('POST ' + url);
-        return this.http.post(url, libro).then(function (res) { return res.data; });
+        return this.http.post(url, l).then(function (res) { return res.data; });
     };
     LibrosService.prototype.modificar = function (id, libro) {
         var url = this.ENDPOINT + id;
+        var l = libro.convertirJson();
         console.log('PUT ' + url);
-        return this.http.put(url, libro).then(function (res) { return res.data; });
+        return this.http.put(url, l).then(function (res) { return res.data; });
     };
     return LibrosService;
 }());

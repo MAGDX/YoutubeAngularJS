@@ -30,6 +30,7 @@ En la pagina inicial nos encontraremos una introducción al proyecto explicandon
 - **Home**
 - **Contratos**
 - **Ejercicio Contratos**
+- **Libros**
 - **About**
 
 ## Contratos

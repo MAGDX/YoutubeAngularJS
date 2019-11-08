@@ -1,93 +1,92 @@
 {
   "libros": [
     {
-      "_titulo": "Eragon",
-      "_isbn": "123-LKJ",
-      "_nPaginas": "320",
-      "_autor": "Christopher Paolini",
-      "_digital": false,
-      "_formatos": {},
+      "titulo": "Eragon",
+      "isbn": "123-LKJ",
+      "nPaginas": "320",
+      "autor": "Christopher Paolini",
+      "digital": true,
+      "formatos": {
+        "pdf": true,
+        "epub": false,
+        "dbt": false,
+        "tpz": false,
+        "mobi": false
+      },
       "id": 1
     },
     {
-      "_titulo": "Harry Potter y la piedra filosofal",
-      "_isbn": "654-LDN",
-      "_nPaginas": 223,
-      "_autor": "J. K. dfweefewf",
-      "_digital": true,
-      "_formatos": {
-        "_pdf": false,
-        "_epub": false,
-        "_dbt": true,
-        "_tpz": false,
-        "_mobi": false
+      "titulo": "Harry Potter y la piedra filosofal",
+      "isbn": "654-LDN",
+      "nPaginas": 223,
+      "autor": "J. K. dfweefewf",
+      "digital": true,
+      "formatos": {
+        "pdf": false,
+        "epub": false,
+        "dbt": true,
+        "tpz": false,
+        "mobi": false
       },
       "id": 2
     },
     {
       "id": 3,
-      "_titulo": "El Nombre del Viento",
-      "_isbn": "861-JFU",
-      "_nPaginas": "612",
-      "_autor": "Patrick Rothfuss",
-      "_digital": false,
-      "_formatos": {
-        "_pdf": false,
-        "_epub": false,
-        "_dbt": false,
-        "_tpz": false,
-        "_mobi": false
+      "titulo": "El Nombre del Viento",
+      "isbn": "861-JFU",
+      "nPaginas": "612",
+      "autor": "Patrick Rothfuss",
+      "digital": false,
+      "formatos": {
+        "pdf": false,
+        "epub": false,
+        "dbt": false,
+        "tpz": false,
+        "mobi": false
       }
     },
     {
       "id": 4,
-      "_titulo": "eiwughfd",
-      "_isbn": "0385504209",
-      "_nPaginas": "91",
-      "_autor": "wefewf",
-      "_digital": false,
-      "_formatos": {
-        "_pdf": false,
-        "_epub": false,
-        "_dbt": false,
-        "_tpz": false,
-        "_mobi": false
+      "titulo": "eiwughfd",
+      "isbn": "0385504209",
+      "nPaginas": "91",
+      "autor": "wefewf",
+      "digital": false,
+      "formatos": {
+        "pdf": false,
+        "epub": false,
+        "dbt": false,
+        "tpz": false,
+        "mobi": false
       }
     },
     {
       "id": 5,
-      "_titulo": "Luces del Norte",
-      "_isbn": "783-ICO",
-      "_nPaginas": 399,
-      "_autor": "Philip Pullman",
-      "_digital": true,
-      "_formatos": {
-        "_pdf": true,
-        "_epub": true,
-        "_dbt": false,
-        "_tpz": false,
-        "_mobi": false
+      "titulo": "Luces del Norte",
+      "isbn": "783-ICO",
+      "nPaginas": 399,
+      "autor": "Philip Pullman",
+      "digital": true,
+      "formatos": {
+        "pdf": true,
+        "epub": true,
+        "dbt": false,
+        "tpz": false,
+        "mobi": false
       }
     },
     {
-      "_titulo": "asdsad",
-      "_isbn": "asdasd",
-      "_nPaginas": "44",
-      "_autor": "oooooo",
-      "_digital": true,
-      "_formatos": {
-        "_epub": true
-      },
-      "id": 6
-    },
-    {
-      "_titulo": "abelardo",
-      "_isbn": "ohadgnorg",
-      "_nPaginas": "vewvew",
-      "_autor": "wefew",
-      "_digital": true,
-      "_formatos": {
-        "_dbt": true
+      "titulo": "abelardo",
+      "isbn": "ohadgnorg",
+      "nPaginas": "vewvew",
+      "autor": "wefew",
+      "digital": true,
+      "formatos": {
+        "pdf": false,
+        "epub": false,
+        "dbt": true,
+        "tpz": false,
+        "mobi": false
       },
       "id": 7
     }
