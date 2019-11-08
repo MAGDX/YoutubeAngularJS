@@ -1,7 +1,7 @@
 class Libro {
 
     // Atributos
-    public id: number;
+    private _id: number;
     private _titulo: string;
     private _isbn: string;
     private _nPaginas: number;
@@ -11,6 +11,7 @@ class Libro {
 
     // Constructor
     constructor() {
+        this._id = 0;
         this._titulo = "";
         this._isbn = "";
         this._nPaginas = 0;
@@ -58,6 +59,22 @@ class Libro {
 
         return libroJson;
     }
+
+    /**
+     * Getter id
+     * @return {number}
+     */
+	public get id(): number {
+		return this._id;
+	}
+
+    /**
+     * Setter id
+     * @param {number} value
+     */
+	public set id(value: number) {
+		this._id = value;
+	}
 
     /**
      * Getter titulo

@@ -1,5 +1,6 @@
 var Libro = (function () {
     function Libro() {
+        this._id = 0;
         this._titulo = "";
         this._isbn = "";
         this._nPaginas = 0;
@@ -41,6 +42,16 @@ var Libro = (function () {
         };
         return libroJson;
     };
+    Object.defineProperty(Libro.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        set: function (value) {
+            this._id = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Libro.prototype, "titulo", {
         get: function () {
             return this._titulo;
